@@ -26,7 +26,7 @@ public class Facturas {
     @Column(name = "FK_Integrante")
     private int FK_Integrante;
     @ManyToOne
-    @JoinColumn(name = "FK_Usuarios", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "FK_Usuarios", referencedColumnName = "id_Usuario", nullable = false)
     private Users usuario;
 
 

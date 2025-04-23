@@ -14,8 +14,8 @@ public class Detalle_UsuarioReceptor {
     private Long idUsuarioReceptor;
 
     @ManyToOne
-    @JoinColumn(name = "c_regimenfiscal", referencedColumnName = "id_RegimenFiscal", nullable = false)
-    private sat_RegimenFiscal regimenFiscal;
+    @JoinColumn(name = "FK_Usuario", referencedColumnName = "id_Usuario", nullable = false)
+    private Users usuario;
 
     @ManyToOne
     @JoinColumn(name = "FK_Receptor", referencedColumnName = "idUsuarioReceptor", nullable = false)
