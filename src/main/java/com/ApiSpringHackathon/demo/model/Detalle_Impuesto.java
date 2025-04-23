@@ -14,7 +14,7 @@ public class Detalle_Impuesto {
     private Long ID_DDimpuesto;
 
     @ManyToOne
-    @JoinColumn(name = "FK_PedidoProducto", referencedColumnName = "idPedidoProducto", nullable = false)
+    @JoinColumn(name = "FK_PedidoProducto", referencedColumnName = "id_pedidoproducto", nullable = false)
     private Detalle_ProductoServicio detalleProductoServicio;
 
     @ManyToOne
