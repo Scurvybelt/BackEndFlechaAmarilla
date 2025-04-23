@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 
 @Controller
@@ -28,25 +29,41 @@ public class OurController {
 
     //Register
     @PostMapping("/register")
-    public ResponseEntity<Object> registerUser(@RequestBody Users user){
+    public ResponseEntity<Object> registerUser(@RequestBody Users user) {
+        // Verifica si ya existe un usuario con ese correo
+        Users existingUser = userRepository.findByEmail(user.getEmail());
+        if (existingUser != null) {
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "User with this email already exists");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
+        }
+
+        // Encripta la contraseña
         String hashedPassword = bCryptPasswordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
-        if(userRepository.save(user).getId() > 0){
+
+        System.out.println(user);
+        // Guarda el usuario
+        if (userRepository.save(user).getId_Usuario() > 0) {
+
             Map<String, String> response = new HashMap<>();
             response.put("message", "User registered successfully");
             return ResponseEntity.ok(response);
         }
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("User Not Saved, Internal Server Error. Please try Again ");
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("User Not Saved, Internal Server Error. Please try Again ");
     }
+
 
     //Login
     @PostMapping("/generate-token")
     public ResponseEntity<Object> generateToken(@RequestBody TokenReqRes tokenReqRes){
-        Users databaseUser = userRepository.findByUsername(tokenReqRes.getUserName());
-        if (databaseUser == null){
+        Users databaseEmail = userRepository.findByEmail(tokenReqRes.getUserName());
+        if (databaseEmail == null){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Sorry, Does Not Exists");
         }
-        if(new BCryptPasswordEncoder().matches(tokenReqRes.getPassword(), databaseUser.getPassword())){
+        if(new BCryptPasswordEncoder().matches(tokenReqRes.getPassword(), databaseEmail.getPassword())){
             String token = jwtTokenUtil.generateToken(tokenReqRes.getUserName());
             long remainingTime = jwtTokenUtil.getRemainingTime(token);
             TokenReqRes response = new TokenReqRes(tokenReqRes.getUserName(), token);

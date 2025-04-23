@@ -17,32 +17,17 @@ public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Long id;
-    private String username;
-    private String ApellidoP;
-    private String ApellidoM;
-    private String Rol;
-
-
-
-    private String password;
+    private Long id_Usuario;
+    private String name;
     private String email;
-    private String telefono;
+    private String password;
 
-    public String getApellidoM() {
-        return ApellidoM;
+    public String getName() {
+        return name;
     }
 
-    public void setApellidoM(String apellidoM) {
-        ApellidoM = apellidoM;
-    }
-
-    public String getApellidoP() {
-        return ApellidoP;
-    }
-
-    public void setApellidoP(String apellidoP) {
-        ApellidoP = apellidoP;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -53,14 +38,6 @@ public class Users {
         this.email = email;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -69,19 +46,11 @@ public class Users {
         this.password = password;
     }
 
-    public String getRol() {
-        return Rol;
+    public Long getId_Usuario() {
+        return id_Usuario;
     }
 
-    public void setRol(String rol) {
-        Rol = rol;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public void setId_Usuario(Long id_Usuario) {
+        this.id_Usuario = id_Usuario;
     }
 }
