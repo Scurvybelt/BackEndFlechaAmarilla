@@ -14,17 +14,17 @@ import java.util.Date;
 public class sat_formas_pago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    private Long c_formas_pago;
+    private Long id_FormaPago;
+    private String c_FormaPago;
     private String descripcion;
-    private String C_Metodopago;
+    private String c_Metodopago;
 
     public String getC_Metodopago() {
-        return C_Metodopago;
+        return c_Metodopago;
     }
 
     public void setC_Metodopago(String c_Metodopago) {
-        C_Metodopago = c_Metodopago;
+        c_Metodopago = c_Metodopago;
     }
 
     public String getDescripcion() {
@@ -35,11 +35,11 @@ public class sat_formas_pago {
         this.descripcion = descripcion;
     }
 
-    public Long getID_Sat_Formas_Pago() {
-        return c_formas_pago;
+    public String getC_FormaPago() {
+        return c_FormaPago;
     }
 
-    public void setc_formas_pago(Long c_formas_pago) {
-        this.c_formas_pago = c_formas_pago;
+    public void setC_FormaPago(String c_FormaPago) {
+        this.c_FormaPago = c_FormaPago;
     }
 }

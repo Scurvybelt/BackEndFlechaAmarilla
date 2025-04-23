@@ -82,21 +82,7 @@ public class OurController {
         return ResponseEntity.ok(jwtTokenUtil.validateToken(tokenReqRes.getToken()));
     }
 
-    @GetMapping("/get-fruit")
-    public ResponseEntity<Object> getAllFruits(@RequestHeader(value = "Authorization", required = false) String token){
-        if(token == null){
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token Is required to Proceed");
-        }else{
-            String realToken = token.substring(7);
-            String tokenCheckoutResult = jwtTokenUtil.validateToken(realToken);
-            if(tokenCheckoutResult.equalsIgnoreCase("valid")){
-                List<String> fruits = List.of("Mango ", "Bananas");
-                return new ResponseEntity<>(fruits, HttpStatus.OK);
-            }else{
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unautorixed dur to" +tokenCheckoutResult);
-            }
-        }
-    }
+
 
 
 }

@@ -7,39 +7,42 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "Pedio")
+@Table(name = "Pedido")
 
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long ID_Pedido;
-    private boolean Bon_Facturado;
-    private int FK_Integrante;
+    @Column(columnDefinition = "boolean default false")
+    private boolean Ban_Facturado;
+    @ManyToOne
+    @JoinColumn(name = "FK_Integrante", referencedColumnName = "id_Integrante", nullable = false)
+    private Integrante integrante;
     private int FK_TipoServicio;
     private Date Fecha_Pedido;
     private String Token_Ticket;
-    private String C_Moneda;
-    private float tipo_cambio;
     @ManyToOne
-    @JoinColumn(name = "FIC_FormaPago", referencedColumnName = "c_formas_pago")
+    @JoinColumn(name = "C_Moneda", referencedColumnName = "idMoneda", nullable = false)
+    private sat_Moneda moneda;
+    private float tipo_cambio;
+
+    @ManyToOne
+    @JoinColumn(name = "FK_FormaPago", referencedColumnName = "id_FormaPago", nullable = false)
     private sat_formas_pago formaPago;
 
+    @ManyToOne
+    @JoinColumn(name = "FK_Factura", referencedColumnName = "idFactura", nullable = false)
+    private Facturas factura;
+
     public boolean isBon_Facturado() {
-        return Bon_Facturado;
+        return Ban_Facturado;
     }
 
     public void setBon_Facturado(boolean bon_Facturado) {
-        Bon_Facturado = bon_Facturado;
+        Ban_Facturado = bon_Facturado;
     }
 
-    public String getC_Moneda() {
-        return C_Moneda;
-    }
-
-    public void setC_Moneda(String c_Moneda) {
-        C_Moneda = c_Moneda;
-    }
 
     public Date getFecha_Pedido() {
         return Fecha_Pedido;
@@ -47,15 +50,6 @@ public class Pedido {
 
     public void setFecha_Pedido(Date fecha_Pedido) {
         Fecha_Pedido = fecha_Pedido;
-    }
-
-
-    public int getFK_Integrante() {
-        return FK_Integrante;
-    }
-
-    public void setFK_Integrante(int FK_Integrante) {
-        this.FK_Integrante = FK_Integrante;
     }
 
     public int getFK_TipoServicio() {
