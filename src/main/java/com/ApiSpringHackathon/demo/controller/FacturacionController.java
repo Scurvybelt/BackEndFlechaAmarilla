@@ -3,20 +3,28 @@ import Services.Issue.SWIssueService;
 import Services.Pdf.SWPdfService;
 import java.io.IOException;
 import java.util.Base64;
+import java.util.UUID;
 
 //import Utils.Responses.Storage.StorageResponse;
 //import Services.Storage.SWStorageService;
 
+import Services.Stamp.SWStampServiceV4;
+import Services.Storage.SWStorageService;
 import Utils.Responses.Pdf.PdfResponse;
+import Utils.Responses.Stamp.SuccessV1Response;
 import Utils.Responses.Stamp.SuccessV4Response;
+import Utils.Responses.Storage.StorageData;
+import Utils.Responses.Storage.StorageResponse;
 import com.ApiSpringHackathon.demo.utils.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringBootVersion;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.List;
 
 
 @RestController
@@ -25,6 +33,10 @@ public class FacturacionController {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+    @PostMapping("/version")
+    public void asdfasd(){
+        System.out.println("Spring Boot Version: " + SpringBootVersion.getVersion());
+    }
 
     @PostMapping("/facturaCFDI")
     public ResponseEntity<String> facturaCFDI(){
@@ -64,26 +76,60 @@ public class FacturacionController {
             return ResponseEntity.ok(e.toString());
         }
     }
-
+//
 //    @PostMapping("/getXML")
 //    public ResponseEntity<String> getXMLByUUID(String UUID){
 //        try {
 //            //Instancia del servicio y autenticación
-//            SWStorageService storage = new SWStorageService("user", "password","http://services.test.sw.com.mx","https://api.test.sw.com.mx", null, 0);
+//            SWStorageService storage = new SWStorageService("eduardoavilat2002@gmail.com", "wmxUyUq9#DaN","http://services.test.sw.com.mx", "https://api.test.sw.com.mx",null, 0);
 //            //Paso de parametro UUID
-//            StorageResponse response = (StorageResponse) storage.getXml(UUID.fromString("c75f87db-e059-4a7c-a922-e4b9c871e8c1"));
+//            StorageResponse response = (StorageResponse) storage.getXml(UUID.fromString("25b5e4dd-cba0-4ba1-a992-416af3e52235"));
 //            //Imprimimos los datos de la respuesta de la solicitud
 //            System.out.println(response.Status);
 //            System.out.println(response.HttpStatusCode);
-//            System.out.println(response.getData);
+//
+//            List<StorageData.Records> records = response.getData().data.getRecords();
+//
+//            for (StorageData.Records record : records) {
+//                System.out.println("UUID: " + record.getUuid());
+//                System.out.println("URL XML: " + record.getUrlXml());
+//                System.out.println("Total: " + record.getTotal());
+//                System.out.println("-----------------------------");
+//            }
+//
 //            //En caso de obtener un error, este puede obtenerse de los campos
 //            System.out.println(response.message);
 //            System.out.println(response.messageDetail);
+//            return ResponseEntity.ok("XML: " + records.toString());
 //
-//        } catch (AuthException | GeneralException | IOException ex) {
-//            Logger.getLogger(ExampleReadme.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return ResponseEntity.ok(e.toString());
 //        }
 //    }
+
+//    @PostMapping("/sendFacEmail")
+//    public ResponseEntity<String> sendFacEmail(String emails, String XML){
+//        try {
+//            // Inicializar el objeto con la información de la cuenta o el token de acceso especifica la URL base para acceder al entorno deseado
+//            SWStampServiceV4 stamp = new SWStampServiceV4("eduardoavilat2002@gmail.com", "wmxUyUq9#DaN", "http://services.test.sw.com.mx");
+//            // Inicializar un objeto de respuesta para almacenar la respuesta
+//            SuccessV1Response response = null;
+//            // Se inicializa la lista de correos
+//            //Se llama al método Stamp y se envia XML previamente sellado, versión de respuesta y lista de correos en los parametros
+//            response = (SuccessV1Response) stamp.Stamp(XML, "v1", emails, null, false);
+//            // En response se mostrará la informacion de respuesta del servicio-
+//            System.out.println(response.Status);
+//            System.out.println(response.HttpStatusCode);
+//            System.out.println(response.tfd);
+//            return ResponseEntity.ok(response.message);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return ResponseEntity.ok(e.toString());
+//        }
+//
+//    }
+
 
     @PostMapping("/genPDF")
     public ResponseEntity<String> generarPDF(String xmlTimbrado0){

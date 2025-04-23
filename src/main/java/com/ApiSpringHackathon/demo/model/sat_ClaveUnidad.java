@@ -14,15 +14,15 @@ public class sat_ClaveUnidad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    private Long c_ClaveUnidad;
+    private Long id_ClaveUnidad;
+    private String c_ClaveUnidad;
     private String descripcion;
 
-    public Long getC_ClaveUnidad() {
+    public String getC_ClaveUnidad() {
         return c_ClaveUnidad;
     }
 
-    public void setC_ClaveUnidad(Long c_ClaveUnidad) {
+    public void setC_ClaveUnidad(String c_ClaveUnidad) {
         this.c_ClaveUnidad = c_ClaveUnidad;
     }
 
