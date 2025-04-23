@@ -11,7 +11,7 @@ public class sat_Moneda {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMoneda;
-    private int c_Moneda;
+    private String c_Moneda;
     private String Descripcion;
 
 
