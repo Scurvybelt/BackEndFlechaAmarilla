@@ -229,11 +229,10 @@ public ResponseEntity<String> generarPDFUUID(){
     }
 
 
-    public static String convertirImagenABase64(String pathImagen) throws IOException {
+    public static String m   (String pathImagen) throws IOException {
         // Leemos la imagen en un arreglo de bytes
         byte[] imageBytes = Files.readAllBytes(Paths.get(pathImagen));
 
         return Base64.getEncoder().encodeToString(imageBytes);
     }
-
 }
