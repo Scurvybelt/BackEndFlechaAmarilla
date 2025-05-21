@@ -217,7 +217,7 @@ public ResponseEntity<String> generarPDFUUID(){
             System.out.println(response.Status);
             System.out.println(response.data);
             //En caso de obtener un error, este puede obtenerse de los campos
-            System.out.println(response.message);
+            System.out.println(response.message);   
             System.out.println(response.messageDetail);
             return ResponseEntity.ok("Email enviado correctamente: " + response.data);
         } catch (Exception e) {
