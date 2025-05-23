@@ -40,6 +40,12 @@
 		</dependency>
 
 <!--		<dependency>-->
+<!--			<groupId>com.azure</groupId>-->
+<!--			<artifactId>azure-cosmos</artifactId>-->
+<!--			<version>4.67.0</version>-->
+<!--		</dependency>-->
+
+<!--		<dependency>-->
 <!--			<groupId>com.mysql</groupId>-->
 <!--			<artifactId>mysql-connector-j</artifactId>-->
 <!--			<scope>runtime</scope>-->
